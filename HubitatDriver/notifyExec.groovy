@@ -15,10 +15,11 @@
  *    Date                Who            What
  *    ----                ---            ----
  *    22-07-28 12:28      erktrek        copied over virtual driver written by Robert Morris, modified to send to NodeJS server.
+ *    22-07-28 15:26      erktrek        added quote delim property to bound notification text in quotes, on by default.
 */
 
 @SuppressWarnings('unused')
-static String version() {return "1.0"}
+static String version() {return "1.01"}
 
 metadata {
     definition (name: "Virtual Notification and Execute", namespace: "erktrek", author: "Eric H") {
@@ -29,6 +30,7 @@ metadata {
    preferences {
        input( name: "nodeAddr",type:"string",title: "NodeJS server address", description:"The location of the NodeJS server including port #.", defaultValue:"http://[NodeJS ip address]:[port]")
        input( name: "addParms",type:"string",title: "Additional Parameters [optional]", description:"Prepend additional parameters before text.", defaultValue:"")
+       input(name: "useDelim", type: "bool", title: "Use quotes around notification text?", defaultValue: true)
        input(name: "logEnable", type: "bool", title: "Enable debug logging", defaultValue: true)
        input(name: "txtEnable", type: "bool", title: "Enable descriptionText logging", defaultValue: true)
    }
@@ -71,12 +73,14 @@ void myAsynchttpHandler(resp, data) {
 void deviceNotification(notificationText) {
 	if (logEnable) log.debug "deviceNotification(notificationText = ${notificationText})"
     sendEvent(name: "deviceNotification", value: notificationText, isStateChange: true)
-
+    
+    String notifyText = (useDelim ? "\"" : "" ) + notificationText + (useDelim ? "\"" : "" );
+    
     Map params = [
       uri:  nodeAddr,
       contentType: "application/json",  // or whatever
       path: "/exec",
-      body: [[data: notificationText], [addParms: addParms]],  // this will get converted to an array of JSON objs.
+      body: [[data: notifyText], [addParms: addParms]],  // this will get converted to an array of JSON objs.
       timeout: 15
    ]
 

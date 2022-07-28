@@ -1,0 +1,12 @@
+#
+# Readme notes
+#
+
+# 1) Edit notifyexec.service and change working directory to the working directory.
+
+# 2) Copy notifyexec.service over to systemd system dir.
+sudo cp notifyexec.service /etc/systemd/system
+
+# 3) Enable Service.
+sudo systemctl enable notifyexec.service
+

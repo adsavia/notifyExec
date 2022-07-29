@@ -3,7 +3,7 @@ Description=Notify Execute Service
 After=network.target
 
 [Service]
-WorkingDirectory=/home/pi/notifyexec
+WorkingDirectory=/home/pi/notifyExec
 ExecStart=/usr/bin/npm start
 Restart=on-failure
 User=pi

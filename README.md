@@ -29,7 +29,7 @@ Warning! This version is NOT SECURE, use at your own risk!!!!
 - see if it runs via "node app.js", leave it running.
 
 ##### HE side:
-1) From github view raw format for the https://github.com/adsavia/Hubitat-DoNS/blob/master/HE_Driver/DoNS-Email.groovy
+1) From github view raw format for the https://github.com/adsavia/notifyExec/blob/main/HubitatDriver/notifyExec.groovy
 2) Cut and paste it into a new device in the drivers code section on your HE. Save.
 3) Add a virtual device from the Devices page and select the "Virtual Notification and Execute (user)" driver under "Virtual Drivers". Save.
 4) Modify configuration, add in NodeJS server IP + any additional parameters required. 

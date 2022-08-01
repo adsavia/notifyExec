@@ -6,15 +6,22 @@ This is a very basic and extremely unsecure system for executing a predefined co
 
 Warning! This version is NOT SECURE, use at your own risk!!!!
 
-##### Requirements:
-
-Linux computer/server (like RaspberryPI) with Git, NodeJS, npm installed.
-Hubitat Elevation hub with the custom "Virtual Notification and Execute" device added to the "Drivers Code" section and a new virtual device created.
-
 #########################################################
 
-##### Simple installation instructions - your mileage may vary depending 
-##### upon your system - I am using a Raspberry PI:
+##### Requirements:
+- Current version of Linux running on a compatible machine
+  - Will likely run on most Linux capable systems
+  - Latest stable release of NodeJS w/NPM installed.
+  - Additional software as necessary like lsof, espeak etc. (see below for espeak instructions)
+  - notifyexec has been tested on the following hardware:
+    - RPI Zero2W (on Debian Bullseye with WiFI)
+    - RPI 4B (On Ubuntu with ethernet)
+    - Odroid XU4 (on Armbian with ethernet)
+    - Odroid N2 (on Ubuntu with ethernet)
+    - LXC Container running Ubuntu 22.04 LTS "Jammy"
+  - Note: Windows has not been tested at this time but may work with additional modifications.
+- Hubitat Elevation hub with the custom "Virtual Notification and Execute" device added to the "Drivers Code" section and a new virtual device created.
+- For espeak configuration see below.
 
 ##### Linux Server side:
 - As root clone this repo to a working directory (I used the PI's home directory).
@@ -32,6 +39,16 @@ Hubitat Elevation hub with the custom "Virtual Notification and Execute" device 
 1) On the Linux Server side - See if a directory listing has appeared in the console, if so then success! If not, check to make sure your firewall is not blocking port 3000.
 2) On the Linux Server side - Modify "nex_config.json" and change "ls" to whatever command you want, recommend you add the path.
 3) Test again in HE by sending another manual "Device Notification".
+
+##### Autostart via systemd:
+1) Copy notifyexec.service over to systemd system dir.
+```
+sudo cp notifyexec.service /etc/systemd/system
+```
+2) Edit file `notifyExec/misc/systemd/notifyexec.service` and change working directory to the current notifyExec directory.
+
+3) Enable Service.
+sudo systemctl enable notifyexec.service
 
 ###### usage:
 
@@ -66,8 +83,8 @@ sudo lsof -i -P -n | grep LISTEN
 - To run manually, make sure systemd service is stopped..then go into the appropriate directory and run..
 ```
 sudo systemctl stop notifyexec
-cd /home/pi/notifyexec
-PORT=3000 node app.js
+cd ./notifyexec
+PORT=3000 npm start
 ```
 Note: leaving off the `PORT=3000 ` bit will default the port to 3000. Also you can run 2 or more instances manually using different port #'s and different terminal sessions - see the "screen" utility for a great way to handle disconnected terminals.
 

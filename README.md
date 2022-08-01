@@ -38,38 +38,59 @@ Warning! This version is NOT SECURE, use at your own risk!!!!
 ##### Verify and finalize:
 1) On the Linux Server side - See if a directory listing has appeared in the console, if so then success! If not, check to make sure your firewall is not blocking port 3000.
 2) On the Linux Server side - Modify "nex_config.json" and change "ls" to whatever command you want, recommend you add the path.
+```
+{
+  "command":"/usr/bin/ls"
+}
+```
 3) Test again in HE by sending another manual "Device Notification".
 
 ##### Autostart via systemd:
-1) Copy notifyexec.service over to systemd system dir.
+1) Copy notifyexec.service over to systemd system dir (this may be different depending on your distro).
 ```
-sudo cp notifyexec.service /etc/systemd/system
+sudo cp ~/notifyExec/misc/systemd/notifyexec.service /etc/systemd/system
 ```
-2) Edit file `notifyExec/misc/systemd/notifyexec.service` and change working directory to the current notifyExec directory.
-
-3) Enable Service.
+2) Edit file `/etc/systemd/system/notifyexec.service` and change working directory to the current notifyExec directory and port if needed.
+ex. for a Raspberry PI
 ```
-sudo systemctl enable notifyexec.service
+[Unit]
+Description=Notify Execute Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/notifyExec
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+User=pi
+Environment=PORT=3000
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-###### usage:
+3) Enable / Disable Service.
+```
+sudo systemctl enable notifyexec
+sudo systemctl disable notifyexec
+```
+4) Start/Restart/Stop Service
+```
+sudo systemctl start notifyexec.service
+sudo systemctl restart notifyexec.service
+sudo systemctl stop notifyexec.service
+```
 
-Use the notification device in HE in your rules per usual.
-
-###### misc:
-
-- Systemd setup
-Check if the service is running:
+- Check if the service is running:
 ```
 sudo systemctl status notifyexec
 ```
 
-Check for notifyexec service issues:
+- Check for notifyexec service issues:
 ```
 sudo journalctl -xe
 ```
 
-To change port# in systemd edit the service file usually located at /etc/systemd/system/notifyexec.service
+- To change port# in systemd edit the service file usually located at /etc/systemd/system/notifyexec.service
 and change the following line from 3000 to desired port. 
 ```
 Environment=PORT=3000

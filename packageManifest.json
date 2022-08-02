@@ -1,0 +1,16 @@
+{
+  "packageName": "Virtual Notification and Execute Driver",
+  "author": "erktrek",
+  "version": "1.0.3",
+  "minimumHEVersion": "2.1.9",
+  "dateReleased": "2022-08-02",
+  "drivers": [
+    {
+      "id": "50e8fae5-6df7-4417-b6a2-63d909fdc256",
+      "name": "Virtual Notification and Execute",
+      "namespace": "adsavia",
+      "location": "https://raw.githubusercontent.com/adsavia/notifyExec/main/HubitatDriver/notifyExec.groovy",
+      "required": true
+    }
+  ]
+}

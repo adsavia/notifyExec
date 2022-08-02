@@ -24,7 +24,7 @@
 static String version() {return "1.03"}
 
 metadata {
-    definition (name: "Virtual Notification and Execute", namespace: "erktrek", author: "Eric H") {
+    definition (name: "Virtual Notification and Execute", namespace: "adsavia", author: "erktrek") {
         capability "Notification"
         capability "Actuator"
     }

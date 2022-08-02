@@ -58,7 +58,7 @@ or wherever your executable file is. Make sure the user has the proper permissio
 ```
 sudo cp ~/notifyExec/misc/systemd/notifyexec.service /etc/systemd/system
 ```
-2) Edit file `/etc/systemd/system/notifyexec.service` and change working directory to the current notifyExec directory and port if needed.
+2) Edit file `/etc/systemd/system/notifyexec.service` and change working directory to the current notifyExec directory and port if needed. When done "start" the service to see if working properly and if so then set to "enable" to autostart on reboot. See below for systemctl commands.
 ex. for a Raspberry PI
 ```
 [Unit]
@@ -75,6 +75,8 @@ Environment=PORT=3000
 [Install]
 WantedBy=multi-user.target
 ```
+
+Note: You can have as many service files provided they will run on different ports.. just change the names slightly ex. notifyExec1.service, notifyExec2.service, notifyExec3.service...
 
 3) Enable / Disable Service.
 ```

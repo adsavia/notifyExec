@@ -14,10 +14,10 @@
  *
  *    Date                verson      Who            What
  *    ----                ------      ---            ----
- *    22-07-28 12:28      1.00        erktrek        copied over virtual driver written by Robert Morris, modified to send to NodeJS server.
- *    22-07-28 15:26      1.01        erktrek        added quote delim property to bound notification text in quotes, on by default.
- *    22-07-28 15:45      1.02        erktrek        Minor forgotten tweaks..
- *    22-07-29 20:11      1.03        erktrek        Adjusted async func to prevent erroneous errors in log.
+ *    22-07-28 12:28      1.0.0        erktrek        copied over virtual driver written by Robert Morris, modified to send to NodeJS server.
+ *    22-07-28 15:26      1.0.1        erktrek        added quote delim property to bound notification text in quotes, on by default.
+ *    22-07-28 15:45      1.0.2        erktrek        Minor forgotten tweaks..
+ *    22-07-29 20:11      1.0.3        erktrek        Adjusted async func to prevent erroneous errors in log.
 */
 
 @SuppressWarnings('unused')

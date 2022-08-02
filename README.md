@@ -43,6 +43,14 @@ Warning! This version is NOT SECURE, use at your own risk!!!!
   "command":"/usr/bin/ls"
 }
 ```
+Note: If using espeak or other command then modify it like this:
+```
+{
+  "command":"/usr/bin/espeak"
+}
+```
+or wherever your executable file is. Make sure the user has the proper permissions to run the app if it is custom built.
+
 3) Test again in HE by sending another manual "Device Notification".
 
 ##### Autostart via systemd:

@@ -53,6 +53,13 @@ or wherever your executable file is. Make sure the user has the proper permissio
 
 3) Test again in HE by sending another manual "Device Notification".
 
+##### eSpeak Configuration Notes:
+
+- Changing the command from "ls" to "espeak" will enable an attached speaker to be used as a TTS speaker and enable Hubitat Voice Notification.
+- eSpeak must be installed separately, and the default speaker must point to the attached speaker; see this for details: [How to make Alsa pick a preferred sound device automatically? - Super User](https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically)
+- If the speaker is a combination speaker/microphone then this may also be used for Hubitat Voice Control.
+- Test that espeak works directly on the Linux box before attempting to interface with Hubitat.
+
 ##### Autostart via systemd:
 1) Copy notifyexec.service over to systemd system dir (this may be different depending on your distro).
 ```

@@ -24,7 +24,12 @@
 static String version() {return "1.03"}
 
 metadata {
-    definition (name: "Virtual Notification and Execute", namespace: "adsavia", author: "erktrek") {
+    definition (
+	name: "Virtual Notification and Execute",
+	namespace: "adsavia",
+	author: "erktrek",
+	importUrl:"https://raw.githubusercontent.com/adsavia/notifyExec/main/HubitatDriver/notifyExec.groovy"
+    ) {
         capability "Notification"
         capability "Actuator"
     }

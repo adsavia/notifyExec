@@ -12,7 +12,7 @@ Warning! This version is NOT SECURE, use at your own risk!!!!
 - Current version of Linux running on a compatible machine
   - Will likely run on most Linux capable systems
   - Latest stable release of NodeJS w/NPM installed.
-  - Additional software as necessary like lsof, espeak etc. (see below for espeak instructions)
+  - Additional software as necessary like lsof, espeak etc.
   - notifyexec has been tested on the following hardware:
     - RPI Zero2W (on Debian Bullseye with WiFI)
     - RPI 4B (On Ubuntu with ethernet)
